@@ -255,11 +255,18 @@ local function csv(items, number)
         return string.join(",", n, cnt, l, c/10000, note) .. CRLF
     end
 
-    calcavg(items, number, function(item, c)
+    local profit, avg, revenue, expense = calcavg(items, number, function(item, c)
         s = s .. L["Credit"] .. "," .. line(item, c)
     end, function(item, c)
         s = s .. L["Debit"] .. "," .. line(item, c)
     end)
+
+    -- Array of csv export - 0=Type, 1=Description, 2=Count, 3=Owner, 4=Cost, 5=Note
+    s = s .. "Summary" .. "," .. L["Net Profit"] .. "," .. "," .. "," .. profit/10000 .. "," .. CRLF
+    s = s .. "Summary" .. "," .. L["Expense"] .. "," .. "," .. "," .. expense/10000 .. "," .. CRLF
+    s = s .. "Summary" .. "," .. L["Revenue"] .. "," .. "," .. "," .. revenue/10000 .. "," .. CRLF
+    s = s .. "Summary" .. "," .. L["Split into"] .. "," .. "," .. "," .. number .. "," .. CRLF
+    s = s .. "Summary" .. "," .. L["Per Member Credit"] .. "," .. "," .. "," .. avg/10000 .. "," .. CRLF
 
     return s
 end
