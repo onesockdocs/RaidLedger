@@ -262,11 +262,11 @@ local function csv(items, number)
     end)
 
     -- Array of csv export - 0=Type, 1=Description, 2=Count, 3=Owner, 4=Cost, 5=Note
-    s = s .. "Summary" .. "," .. L["Net Profit"] .. "," .. "," .. "," .. profit/10000 .. "," .. CRLF
-    s = s .. "Summary" .. "," .. L["Expense"] .. "," .. "," .. "," .. expense/10000 .. "," .. CRLF
-    s = s .. "Summary" .. "," .. L["Revenue"] .. "," .. "," .. "," .. revenue/10000 .. "," .. CRLF
-    s = s .. "Summary" .. "," .. L["Split into"] .. "," .. "," .. "," .. number .. "," .. CRLF
-    s = s .. "Summary" .. "," .. L["Per Member Credit"] .. "," .. "," .. "," .. avg/10000 .. "," .. CRLF
+    s = s .. L["Summary"] .. "," .. L["Net Profit"] .. "," .. "," .. "," .. profit/10000 .. "," .. CRLF
+    s = s .. L["Summary"] .. "," .. L["Expense"] .. "," .. "," .. "," .. expense/10000 .. "," .. CRLF
+    s = s .. L["Summary"] .. "," .. L["Revenue"] .. "," .. "," .. "," .. revenue/10000 .. "," .. CRLF
+    s = s .. L["Summary"] .. "," .. L["Split into"] .. "," .. "," .. "," .. number .. "," .. CRLF
+    s = s .. L["Summary"] .. "," .. L["Per Member Credit"] .. "," .. "," .. "," .. avg/10000 .. "," .. CRLF
 
     return s
 end
