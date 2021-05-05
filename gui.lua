@@ -1199,11 +1199,25 @@ function GUI:Init()
             local data = {}
 
             for _, name in pairs({
-                L["Compensation: Tank"],
-                L["Compensation: Healer"],
-                L["Compensation: Repait Bot"],
-                L["Compensation: DPS"],
-                L["Compensation: Other"],
+                "Guild Cut",
+                "Raid Leader",
+                "Naxx-MT-1",
+                "Naxx-MT-2",
+                "Naxx-MT-3",
+                "Naxx-MT-4",
+                "Naxx-MT-5",
+                "Top DPS Ranged",
+                "Top DPS Melee",
+                "Top Healer",
+                "Naxx-MC Priest",
+                "AQ-Warlock Tank",
+                "AQ-Hunter Skip",
+                "MT",
+                "OT",
+                "Rebuff-Rend",
+                "Rebuff-ZG",
+                "Rebuff-Dragon",
+                "Rebuff-Multiple",
             }) do
                 local b = text == ""
                 b = b or (text == "#ONFOCUS")
@@ -1325,18 +1339,21 @@ function GUI:Init()
         local bidframe = self.bidframe
         local bidClick = function(self)
 
-            if bidframe:IsShown() then
-                return
-            end
-
             local entry = self:GetParent().curEntry
-
             local item = entry["detail"]["item"] or entry["detail"]["displayname"]
 
             if item and item ~= "" then
-                bidframe.SetItem(item, entry["detail"]["count"])
-                bidframe.curEntry = entry
-                bidframe:Show()
+                if SlashCmdList.GDKPD then
+                    SlashCmdList.GDKPD("auction " .. item)
+                else
+                    if bidframe:IsShown() then
+                        return
+                    end
+
+                        bidframe.SetItem(item, entry["detail"]["count"])
+                        bidframe.curEntry = entry
+                        bidframe:Show()
+                end
             end
         end
 
@@ -1723,7 +1740,7 @@ function GUI:Init()
             end)
 
         end)
-
+        
         self.lootLogFrame = ScrollingTable:CreateST({
             {
                 ["name"] = "",
@@ -1806,7 +1823,6 @@ function GUI:Init()
             end,
         })
     end
-
 
     -- report btn
     do
@@ -2170,7 +2186,6 @@ function GUI:Init()
             EasyMenu(formatMenu, menuFrame, "cursor", 0 , 0, "MENU");
         end)        
     end
-
 end
 
 RegEvent("VARIABLES_LOADED", function()
