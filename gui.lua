@@ -1079,7 +1079,7 @@ function GUI:Init()
             if IsControlKeyDown() then
                 applytemplate()
             else
-                Database:AddDebit(L["Compensation"])
+                Database:AddDebit("")
             end
 
             ScrollFrame_OnVerticalScroll(self.lootLogFrame.scrollframe, 0) -- move to top

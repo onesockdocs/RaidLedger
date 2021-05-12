@@ -4,6 +4,9 @@ local _, ADDONSELF = ...
 local RegEvent = ADDONSELF.regevent
 
 RegEvent("ADDON_LOADED", function()
+    if not RaidLedgerGlobalDatabase then
+        RaidLedgerGlobalDatabase = {}
+    end
     if not RaidLedgerDatabase then
         RaidLedgerDatabase = {}
     end
@@ -24,11 +27,11 @@ function db:OnLedgerItemsChange()
 end
 
 local function GetConfig()
-    if not RaidLedgerDatabase["config"] then
-        RaidLedgerDatabase["config"] = {}
+    if not RaidLedgerGlobalDatabase["config"] then
+        RaidLedgerGlobalDatabase["config"] = {}
     end
 
-    return RaidLedgerDatabase["config"]
+    return RaidLedgerGlobalDatabase["config"]
 end
 
 function db:SetConfig(key, v)
